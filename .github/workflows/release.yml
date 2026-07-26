@@ -40,11 +40,11 @@ jobs:
       # Архивирование
       - name: Zip Client
         shell: pwsh
-        run: Compress-Archive build/client client.zip
+        run: Compress-Archive -Path build/client/* -DestinationPath client.zip
 
       - name: Zip Server
         shell: pwsh
-        run: Compress-Archive build/server server.zip
+        run: Compress-Archive -Path build/server/* -DestinationPath server.zip
 
       # Создание релиза
       - name: Release
