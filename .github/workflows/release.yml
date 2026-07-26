@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build folders
+        shell: pwsh
+        run: |
+          New-Item build -ItemType Directory
+          New-Item build/client -ItemType Directory
+          New-Item build/server -ItemType Directory
+
+      - name: Copy client
+        shell: pwsh
+        run: |
+          Copy-Item client/* build/client -Recurse -Force
+          Copy-Item shared/* build/client -Recurse -Force
+
+      - name: Copy server
+        shell: pwsh
+        run: |
+          Copy-Item server/* build/server -Recurse -Force
+          Copy-Item shared/* build/server -Recurse -Force
+
+      - name: Create ZIP archives
+        shell: pwsh
+        run: |
+          Compress-Archive build/client client.zip
+          Compress-Archive build/server server.zip
+
+      - name: Upload client.zip
+        uses: softprops/action-gh-release@v2
+        with:
+          files: client.zip
+
+      - name: Upload server.zip
+        uses: softprops/action-gh-release@v2
+        with:
+          files: server.zip
