@@ -191,7 +191,7 @@ jobs:
             $commits = @()
           }
 
-          # Убираем коммиты с !silent (без учёта регистра)
+          # Убираем коммиты с !s (без учёта регистра)
           $filtered = $commits | Where-Object { $_ -notmatch '(?i)!s' }
 
           Write-Host "--- All commits ---"
@@ -200,7 +200,7 @@ jobs:
           $filtered | ForEach-Object { Write-Host $_ }
 
           if (-not $filtered -or $filtered.Count -eq 0) {
-            Write-Host "All commits are !silent or no commits found. Skipping notification."
+            Write-Host "All commits are !s or no commits found. Skipping notification."
             Add-Content -Path $env:GITHUB_OUTPUT -Value "has_changes=false" -Encoding utf8NoBOM
           } else {
             Add-Content -Path $env:GITHUB_OUTPUT -Value "has_changes=true" -Encoding utf8NoBOM
