@@ -46,6 +46,100 @@ jobs:
         shell: pwsh
         run: Compress-Archive -Path build/server/* -DestinationPath server.zip
 
+      # Генерация sync-файлов
+      - name: Generate Sync Files
+        shell: pwsh
+        run: |
+          $repo = "${{ github.repository }}"
+          $tag = "${{ steps.tag.outputs.new_tag }}"
+          $previousTag = "${{ steps.tag.outputs.previous_tag }}"
+
+          function Get-DeletedRelativePaths {
+            param(
+              [string[]]$Prefixes,
+              [string]$PreviousTag
+            )
+
+            $result = New-Object System.Collections.Generic.HashSet[string]
+
+            if (-not $PreviousTag) {
+              return $result
+            }
+
+            $diffPaths = $Prefixes -join " "
+            $diffOutput = git diff --name-status "$PreviousTag" HEAD -- $diffPaths
+
+            foreach ($line in $diffOutput) {
+              if (-not $line) { continue }
+              $parts = $line -split "`t"
+              $status = $parts[0]
+              $filePath = $parts[1]
+
+              if ($status -eq "D") {
+                foreach ($prefix in $Prefixes) {
+                  if ($filePath -like "$prefix/*") {
+                    $rel = $filePath.Substring($prefix.Length + 1)
+                    [void]$result.Add($rel)
+                    break
+                  }
+                }
+              }
+            }
+
+            return $result
+          }
+
+          function Build-ModifyArray {
+            param([System.Collections.Generic.HashSet[string]]$RelativePaths)
+
+            $modify = @()
+            foreach ($rel in $RelativePaths) {
+              $escaped = [regex]::Escape($rel)
+              $modify += [ordered]@{
+                type    = "remove"
+                pattern = "^$escaped$"
+                path    = "."
+              }
+            }
+            return ,$modify
+          }
+
+          $deletedClient = Get-DeletedRelativePaths -Prefixes @("client", "shared") -PreviousTag $previousTag
+          $deletedServer = Get-DeletedRelativePaths -Prefixes @("server", "shared") -PreviousTag $previousTag
+
+          $clientModify = Build-ModifyArray -RelativePaths $deletedClient
+          $serverModify = Build-ModifyArray -RelativePaths $deletedServer
+
+          $clientSync = [ordered]@{
+            sync_version = 3
+            sync = @(
+              [ordered]@{
+                type      = "packed"
+                url       = "https://github.com/$repo/releases/download/$tag/client.zip"
+                name      = "client"
+                version   = "$tag"
+                directory = "."
+              }
+            )
+            modify = $clientModify
+          }
+          $clientSync | ConvertTo-Json -Depth 10 | Set-Content -Path "client-sync.json" -Encoding UTF8
+
+          $serverSync = [ordered]@{
+            sync_version = 3
+            sync = @(
+              [ordered]@{
+                type      = "packed"
+                url       = "https://github.com/$repo/releases/download/$tag/server.zip"
+                name      = "server"
+                version   = "$tag"
+                directory = "."
+              }
+            )
+            modify = $serverModify
+          }
+          $serverSync | ConvertTo-Json -Depth 10 | Set-Content -Path "server-sync.json" -Encoding UTF8
+
       # Создание релиза
       - name: Release
         uses: softprops/action-gh-release@v2
@@ -56,3 +150,5 @@ jobs:
           files: |
             client.zip
             server.zip
+            client-sync.json
+            server-sync.json
