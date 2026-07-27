@@ -49,10 +49,15 @@ jobs:
       # Генерация sync-файлов
       - name: Generate Sync Files
         shell: pwsh
+        env:
+          MC_LOADER: ${{ vars.MC_LOADER }}
+          MC_VERSION: ${{ vars.MC_VERSION }}
         run: |
           $repo = "${{ github.repository }}"
           $tag = "${{ steps.tag.outputs.new_tag }}"
           $previousTag = "${{ steps.tag.outputs.previous_tag }}"
+          $mcLoader = $env:MC_LOADER
+          $mcVersion = $env:MC_VERSION
 
           function Get-DeletedRelativePaths {
             param(
@@ -111,6 +116,11 @@ jobs:
           $serverModify = Build-ModifyArray -RelativePaths $deletedServer
 
           $clientSync = [ordered]@{
+            '$schema'   = "https://raw.githubusercontent.com/oxydien/simple-mod-sync/refs/heads/main/schema.json"
+            environment = [ordered]@{
+              mc_loader  = $mcLoader
+              mc_version = $mcVersion
+            }
             sync_version = 3
             sync = @(
               [ordered]@{
@@ -126,6 +136,11 @@ jobs:
           $clientSync | ConvertTo-Json -Depth 10 | Set-Content -Path "client-sync.json" -Encoding UTF8
 
           $serverSync = [ordered]@{
+            '$schema'   = "https://raw.githubusercontent.com/oxydien/simple-mod-sync/refs/heads/main/schema.json"
+            environment = [ordered]@{
+              mc_loader  = $mcLoader
+              mc_version = $mcVersion
+            }
             sync_version = 3
             sync = @(
               [ordered]@{
