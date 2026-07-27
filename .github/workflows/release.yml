@@ -72,6 +72,12 @@ jobs:
           $mcLoader = $env:MC_LOADER
           $mcVersion = $env:MC_VERSION
 
+          Write-Host "Previous tag: $previousTag"
+          Write-Host "--- Raw git diff (client/shared) ---"
+          git diff --name-status "$previousTag" HEAD -- client shared
+          Write-Host "--- Raw git diff (server/shared) ---"
+          git diff --name-status "$previousTag" HEAD -- server shared
+
           function Get-DeletedRelativePaths {
             param(
               [string[]]$Prefixes,
@@ -84,8 +90,7 @@ jobs:
               return $result
             }
 
-            $diffPaths = $Prefixes -join " "
-            $diffOutput = git diff --name-status "$PreviousTag" HEAD -- $diffPaths
+            $diffOutput = git diff --name-status "$PreviousTag" HEAD -- $Prefixes
 
             foreach ($line in $diffOutput) {
               if (-not $line) { continue }
