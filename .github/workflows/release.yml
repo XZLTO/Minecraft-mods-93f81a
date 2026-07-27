@@ -173,6 +173,45 @@ jobs:
           }
           $serverSync | ConvertTo-Json -Depth 10 | Set-Content -Path "server-sync.json" -Encoding UTF8
 
+      # Генерация списка изменений (с фильтрацией !silent)
+      - name: Generate Changelog
+        id: changelog
+        shell: pwsh
+        run: |
+          $previousTag = "${{ steps.tag.outputs.previous_tag }}"
+
+          if ($previousTag) {
+            $range = "$previousTag..HEAD"
+          } else {
+            $range = "HEAD"
+          }
+
+          $commits = git log $range --pretty=format:"%s"
+          if (-not $commits) {
+            $commits = @()
+          }
+
+          # Убираем коммиты с !silent (без учёта регистра)
+          $filtered = $commits | Where-Object { $_ -notmatch '(?i)!silent' }
+
+          Write-Host "--- All commits ---"
+          $commits | ForEach-Object { Write-Host $_ }
+          Write-Host "--- Filtered commits (silent removed) ---"
+          $filtered | ForEach-Object { Write-Host $_ }
+
+          if (-not $filtered -or $filtered.Count -eq 0) {
+            Write-Host "All commits are !silent or no commits found. Skipping notification."
+            Add-Content -Path $env:GITHUB_OUTPUT -Value "has_changes=false" -Encoding utf8NoBOM
+          } else {
+            Add-Content -Path $env:GITHUB_OUTPUT -Value "has_changes=true" -Encoding utf8NoBOM
+
+            $list = ($filtered | ForEach-Object { "- $_" }) -join "`n"
+
+            Add-Content -Path $env:GITHUB_OUTPUT -Value "changelog<<EOF" -Encoding utf8NoBOM
+            Add-Content -Path $env:GITHUB_OUTPUT -Value $list -Encoding utf8NoBOM
+            Add-Content -Path $env:GITHUB_OUTPUT -Value "EOF" -Encoding utf8NoBOM
+          }
+
       # Создание релиза
       - name: Release
         uses: softprops/action-gh-release@v2
@@ -185,3 +224,59 @@ jobs:
             server.zip
             client-sync.json
             server-sync.json
+
+      # Уведомление в Discord (несколько вебхуков)
+      - name: Discord Notification
+        if: ${{ secrets.DISCORD_WEBHOOKS != '' && steps.changelog.outputs.has_changes == 'true' }}
+        shell: pwsh
+        env:
+          DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
+          CHANGELOG: ${{ steps.changelog.outputs.changelog }}
+        run: |
+          $raw = $env:DISCORD_WEBHOOKS
+          if (-not $raw) {
+            Write-Host "Discord webhooks are not set, skipping notification."
+            exit 0
+          }
+
+          # Разделитель: перенос строки или запятая
+          $webhooks = $raw -split "[\r\n,]+" | Where-Object { $_.Trim() -ne "" }
+
+          $repo = "${{ github.repository }}"
+          $tag = "${{ steps.tag.outputs.new_tag }}"
+          $releaseUrl = "https://github.com/$repo/releases/tag/$tag"
+          $changelog = $env:CHANGELOG
+          if (-not $changelog) {
+            $changelog = "No changes listed."
+          }
+          # Discord ограничивает поле embed 1024 символами
+          if ($changelog.Length -gt 1000) {
+            $changelog = $changelog.Substring(0, 1000) + "`n... (обрезано)"
+          }
+
+          $body = @{
+            username   = "Release Bot"
+            embeds     = @(
+              @{
+                title       = "New release: $tag"
+                url         = $releaseUrl
+                description = "A new version of **$repo** has been released."
+                color       = 3066993
+                fields      = @(
+                  @{ name = "Changes"; value = $changelog; inline = $false }
+                  @{ name = "Client"; value = "[client.zip](https://github.com/$repo/releases/download/$tag/client.zip)"; inline = $true }
+                  @{ name = "Server"; value = "[server.zip](https://github.com/$repo/releases/download/$tag/server.zip)"; inline = $true }
+                )
+              }
+            )
+          } | ConvertTo-Json -Depth 10
+
+          foreach ($webhook in $webhooks) {
+            $webhook = $webhook.Trim()
+            Write-Host "Sending notification to: $webhook"
+            try {
+              Invoke-RestMethod -Uri $webhook -Method Post -Body $body -ContentType "application/json"
+            } catch {
+              Write-Host "Failed to send to $webhook`: $_"
+            }
+          }
