@@ -260,12 +260,11 @@ jobs:
             embeds     = @(
               @{
                 title       = "New update: $tag"
-                url         = $releaseUrl
                 description = "[Новое обновление доступно!]($releaseUrl)"
                 color       = 3066993
                 fields      = @(
                   @{ name = "Changes"; value = $changelog; inline = $false }
-                  @{ name = "Zip Files"; value = "[client.zip](https://github.com/$repo/releases/download/$tag/client.zip) | [server.zip](https://github.com/$repo/releases/download/$tag/server.zip)"; inline = $true }
+                  @{ name = "Zip Files"; value = "[client.zip](https://github.com/$repo/releases/download/$tag/client.zip)"; inline = $true }
                 )
               }
             )
