@@ -227,7 +227,7 @@ jobs:
 
       # Уведомление в Discord (несколько вебхуков)
       - name: Discord Notification
-        if: ${{ secrets.DISCORD_WEBHOOKS != '' && steps.changelog.outputs.has_changes == 'true' }}
+        if: ${{ steps.changelog.outputs.has_changes == 'true' }}
         shell: pwsh
         env:
           DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
@@ -238,6 +238,7 @@ jobs:
             Write-Host "Discord webhooks are not set, skipping notification."
             exit 0
           }
+
 
           # Разделитель: перенос строки или запятая
           $webhooks = $raw -split "[\r\n,]+" | Where-Object { $_.Trim() -ne "" }
