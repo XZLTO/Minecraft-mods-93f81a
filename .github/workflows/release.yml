@@ -192,7 +192,7 @@ jobs:
           }
 
           # Убираем коммиты с !silent (без учёта регистра)
-          $filtered = $commits | Where-Object { $_ -notmatch '(?i)!silent' }
+          $filtered = $commits | Where-Object { $_ -notmatch '(?i)!s' }
 
           Write-Host "--- All commits ---"
           $commits | ForEach-Object { Write-Host $_ }
