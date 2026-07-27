@@ -28,14 +28,27 @@ jobs:
         shell: pwsh
         run: |
           mkdir build
-
           mkdir build/client
-          Copy-Item client/* build/client -Recurse -Force
-          Copy-Item shared/* build/client -Recurse -Force
-
           mkdir build/server
-          Copy-Item server/* build/server -Recurse -Force
-          Copy-Item shared/* build/server -Recurse -Force
+
+          if (Test-Path "client") {
+            Copy-Item client/* build/client -Recurse -Force
+          } else {
+            Write-Host "Skipping: 'client' folder not found"
+          }
+
+          if (Test-Path "shared") {
+            Copy-Item shared/* build/client -Recurse -Force
+            Copy-Item shared/* build/server -Recurse -Force
+          } else {
+            Write-Host "Skipping: 'shared' folder not found"
+          }
+
+          if (Test-Path "server") {
+            Copy-Item server/* build/server -Recurse -Force
+          } else {
+            Write-Host "Skipping: 'server' folder not found"
+          }
 
       # Архивирование
       - name: Zip Client
