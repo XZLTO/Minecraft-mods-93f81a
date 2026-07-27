@@ -15,5 +15,16 @@
       "directory": "."
     }
   ],
-  "modify": []
+  "modify": [
+    {
+      "type": "delete",
+      "pattern":"^mods/kubejs.*.jar$",
+      "path": "."
+    },
+      {
+      "type": "delete",
+      "pattern":"^mods/rhino.*.jar$",
+      "path": "."
+    }
+  ]
 }
