@@ -1,0 +1,19 @@
+{
+  "$comment_update_at": "https://sms.oxydien.dev/?ref=heads",
+  "$schema": "https://raw.githubusercontent.com/oxydien/simple-mod-sync/refs/heads/main/schema.json",
+  "environment": {
+    "mc_loader": "neoforge",
+    "mc_version": "1.21.1"
+  },
+  "sync_version": 3,
+  "sync": [
+    {
+      "name": "mods",
+      "url": "https://github.com/XZLTO/Minecraft-mods-93f81a/releases/latest/download/server.zip",
+      "type": "packed",
+      "version": "0.0.2",
+      "directory": "."
+    }
+  ],
+  "modify": []
+}
