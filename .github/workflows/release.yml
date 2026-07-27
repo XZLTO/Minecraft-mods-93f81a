@@ -255,17 +255,16 @@ jobs:
           }
 
           $body = @{
-            username   = "Release Bot"
+            username   = "Update Bot"
             embeds     = @(
               @{
-                title       = "New release: $tag"
+                title       = "New update: $tag"
                 url         = $releaseUrl
-                description = "A new version of **$repo** has been released."
+                description = "[Новое обновление доступно!]($releaseUrl)"
                 color       = 3066993
                 fields      = @(
                   @{ name = "Changes"; value = $changelog; inline = $false }
-                  @{ name = "Client"; value = "[client.zip](https://github.com/$repo/releases/download/$tag/client.zip)"; inline = $true }
-                  @{ name = "Server"; value = "[server.zip](https://github.com/$repo/releases/download/$tag/server.zip)"; inline = $true }
+                  @{ name = "Zip Files"; value = "[client.zip](https://github.com/$repo/releases/download/$tag/client.zip) | [server.zip](https://github.com/$repo/releases/download/$tag/server.zip)"; inline = $true }
                 )
               }
             )
