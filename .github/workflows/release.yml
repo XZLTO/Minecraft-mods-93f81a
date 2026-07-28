@@ -71,66 +71,88 @@ jobs:
           $mcLoader = $env:MC_LOADER
           $mcVersion = $env:MC_VERSION
 
-          $allTags = @(git tag --sort=-creatordate)   
-          if ($allTags.Count -ge 20) {
-            $oldTag = $allTags[19]          
-          } elseif ($allTags.Count -gt 0) {
-            $oldTag = $allTags[-1]          
+          $allTags = @(git tag --sort=creatordate)
+          Write-Host "All tags in order: $allTags"
+
+          $maxReleases = 20
+          if ($allTags.Count -gt $maxReleases) {
+            $recentTags = $allTags[-$maxReleases..-1]   # последние 20
           } else {
-            $oldTag = $null                 
+            $recentTags = $allTags
           }
 
-          Write-Host "Comparing HEAD with tag for deletions: $oldTag"
-          Write-Host "--- Raw git diff (client/shared) against $oldTag ---"
-          if ($oldTag) {
-            git diff --name-status "$oldTag" HEAD -- client shared
-          } else {
-            Write-Host "(no old tag – no diff)"
-          }
-          Write-Host "--- Raw git diff (server/shared) against $oldTag ---"
-          if ($oldTag) {
-            git diff --name-status "$oldTag" HEAD -- server shared
-          } else {
-            Write-Host "(no old tag – no diff)"
-          }
+          $comparisonPoints = @($recentTags) + @("HEAD")
+          Write-Host "Analyzing tags: $recentTags and HEAD"
 
-          function Get-DeletedRelativePaths {
-            param(
-              [string[]]$Prefixes,
-              [string]$OldTag
-            )
+          function Get-DeletedInDiff {
+            param([string]$OldRef, [string]$NewRef, [string[]]$Prefixes)
 
-            $result = New-Object System.Collections.Generic.HashSet[string]
-
-            if (-not $OldTag) {
-              return $result
-            }
-
-            $diffOutput = git diff --name-status "$OldTag" HEAD -- $Prefixes
-
-            foreach ($line in $diffOutput) {
+            $deleted = [System.Collections.Generic.HashSet[string]]::new()
+            $diff = git diff --name-status "$OldRef" "$NewRef" -- $Prefixes
+            foreach ($line in $diff) {
               if (-not $line) { continue }
               $parts = $line -split "`t"
               $status = $parts[0]
               $filePath = $parts[1]
-
               if ($status -eq "D") {
                 foreach ($prefix in $Prefixes) {
                   if ($filePath -like "$prefix/*") {
                     $rel = $filePath.Substring($prefix.Length + 1)
-                    [void]$result.Add($rel)
+                    [void]$deleted.Add($rel)
                     break
                   }
                 }
               }
             }
+            return $deleted
+          }
 
-            return $result
+          function Get-AddedInDiff {
+            param([string]$OldRef, [string]$NewRef, [string[]]$Prefixes)
+
+            $added = [System.Collections.Generic.HashSet[string]]::new()
+            $diff = git diff --name-status "$OldRef" "$NewRef" -- $Prefixes
+            foreach ($line in $diff) {
+              if (-not $line) { continue }
+              $parts = $line -split "`t"
+              $status = $parts[0]
+              $filePath = $parts[1]
+              if ($status -eq "A") {
+                foreach ($prefix in $Prefixes) {
+                  if ($filePath -like "$prefix/*") {
+                    $rel = $filePath.Substring($prefix.Length + 1)
+                    [void]$added.Add($rel)
+                    break
+                  }
+                }
+              }
+            }
+            return $added
+          }
+
+          $finalDeletedClient = [System.Collections.Generic.HashSet[string]]::new()
+          $finalDeletedServer = [System.Collections.Generic.HashSet[string]]::new()
+
+          for ($i = 0; $i -lt $comparisonPoints.Count - 1; $i++) {
+            $oldRef = $comparisonPoints[$i]
+            $newRef = $comparisonPoints[$i + 1]
+            Write-Host "Diff $oldRef .. $newRef"
+
+            $delClient = Get-DeletedInDiff -OldRef $oldRef -NewRef $newRef -Prefixes @("client", "shared")
+            $addClient = Get-AddedInDiff -OldRef $oldRef -NewRef $newRef -Prefixes @("client", "shared")
+
+            $delServer = Get-DeletedInDiff -OldRef $oldRef -NewRef $newRef -Prefixes @("server", "shared")
+            $addServer = Get-AddedInDiff -OldRef $oldRef -NewRef $newRef -Prefixes @("server", "shared")
+
+            foreach ($f in $delClient) { [void]$finalDeletedClient.Add($f) }
+            foreach ($f in $addClient) { [void]$finalDeletedClient.Remove($f) }
+
+            foreach ($f in $delServer) { [void]$finalDeletedServer.Add($f) }
+            foreach ($f in $addServer) { [void]$finalDeletedServer.Remove($f) }
           }
 
           function Build-ModifyArray {
             param([System.Collections.Generic.HashSet[string]]$RelativePaths)
-
             $modify = @()
             foreach ($rel in $RelativePaths) {
               $escaped = [regex]::Escape($rel)
@@ -143,12 +165,10 @@ jobs:
             return ,$modify
           }
 
-          $deletedClient = Get-DeletedRelativePaths -Prefixes @("client", "shared") -OldTag $oldTag
-          $deletedServer = Get-DeletedRelativePaths -Prefixes @("server", "shared") -OldTag $oldTag
+          $clientModify = Build-ModifyArray -RelativePaths $finalDeletedClient
+          $serverModify = Build-ModifyArray -RelativePaths $finalDeletedServer
 
-          $clientModify = Build-ModifyArray -RelativePaths $deletedClient
-          $serverModify = Build-ModifyArray -RelativePaths $deletedServer
-
+          # 8. Генерируем JSON
           $clientSync = [ordered]@{
             '$schema'   = "https://raw.githubusercontent.com/oxydien/simple-mod-sync/refs/heads/main/schema.json"
             environment = [ordered]@{
