@@ -59,7 +59,7 @@ jobs:
         shell: pwsh
         run: Compress-Archive -Path build/server/* -DestinationPath server.zip
 
-      # Генерация sync-файлов
+      # Генерация sync-файлов (учитываются удаления за последние 20 релизов)
       - name: Generate Sync Files
         shell: pwsh
         env:
@@ -68,29 +68,45 @@ jobs:
         run: |
           $repo = "${{ github.repository }}"
           $tag = "${{ steps.tag.outputs.new_tag }}"
-          $previousTag = "${{ steps.tag.outputs.previous_tag }}"
           $mcLoader = $env:MC_LOADER
           $mcVersion = $env:MC_VERSION
 
-          Write-Host "Previous tag: $previousTag"
-          Write-Host "--- Raw git diff (client/shared) ---"
-          git diff --name-status "$previousTag" HEAD -- client shared
-          Write-Host "--- Raw git diff (server/shared) ---"
-          git diff --name-status "$previousTag" HEAD -- server shared
+          $allTags = @(git tag --sort=-creatordate)   
+          if ($allTags.Count -ge 20) {
+            $oldTag = $allTags[19]          
+          } elseif ($allTags.Count -gt 0) {
+            $oldTag = $allTags[-1]          
+          } else {
+            $oldTag = $null                 
+          }
+
+          Write-Host "Comparing HEAD with tag for deletions: $oldTag"
+          Write-Host "--- Raw git diff (client/shared) against $oldTag ---"
+          if ($oldTag) {
+            git diff --name-status "$oldTag" HEAD -- client shared
+          } else {
+            Write-Host "(no old tag – no diff)"
+          }
+          Write-Host "--- Raw git diff (server/shared) against $oldTag ---"
+          if ($oldTag) {
+            git diff --name-status "$oldTag" HEAD -- server shared
+          } else {
+            Write-Host "(no old tag – no diff)"
+          }
 
           function Get-DeletedRelativePaths {
             param(
               [string[]]$Prefixes,
-              [string]$PreviousTag
+              [string]$OldTag
             )
 
             $result = New-Object System.Collections.Generic.HashSet[string]
 
-            if (-not $PreviousTag) {
+            if (-not $OldTag) {
               return $result
             }
 
-            $diffOutput = git diff --name-status "$PreviousTag" HEAD -- $Prefixes
+            $diffOutput = git diff --name-status "$OldTag" HEAD -- $Prefixes
 
             foreach ($line in $diffOutput) {
               if (-not $line) { continue }
@@ -127,8 +143,8 @@ jobs:
             return ,$modify
           }
 
-          $deletedClient = Get-DeletedRelativePaths -Prefixes @("client", "shared") -PreviousTag $previousTag
-          $deletedServer = Get-DeletedRelativePaths -Prefixes @("server", "shared") -PreviousTag $previousTag
+          $deletedClient = Get-DeletedRelativePaths -Prefixes @("client", "shared") -OldTag $oldTag
+          $deletedServer = Get-DeletedRelativePaths -Prefixes @("server", "shared") -OldTag $oldTag
 
           $clientModify = Build-ModifyArray -RelativePaths $deletedClient
           $serverModify = Build-ModifyArray -RelativePaths $deletedServer
@@ -173,7 +189,7 @@ jobs:
           }
           $serverSync | ConvertTo-Json -Depth 10 | Set-Content -Path "server-sync.json" -Encoding UTF8
 
-      # Генерация списка изменений (с фильтрацией !silent)
+      # Генерация списка изменений (с фильтрацией !silent) – по-прежнему от предыдущего тега
       - name: Generate Changelog
         id: changelog
         shell: pwsh
@@ -191,7 +207,6 @@ jobs:
             $commits = @()
           }
 
-          # Убираем коммиты с !s (без учёта регистра)
           $filtered = $commits | Where-Object { $_ -notmatch '(?i)!s' }
 
           Write-Host "--- All commits ---"
@@ -239,8 +254,6 @@ jobs:
             exit 0
           }
 
-
-          # Разделитель: перенос строки или запятая
           $webhooks = $raw -split "[\r\n,]+" | Where-Object { $_.Trim() -ne "" }
 
           $repo = "${{ github.repository }}"
@@ -250,7 +263,6 @@ jobs:
           if (-not $changelog) {
             $changelog = "No changes listed."
           }
-          # Discord ограничивает поле embed 1024 символами
           if ($changelog.Length -gt 1000) {
             $changelog = $changelog.Substring(0, 1000) + "`n... (обрезано)"
           }
