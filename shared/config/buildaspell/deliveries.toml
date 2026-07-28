@@ -1,0 +1,117 @@
+#Disabling a delivery method hides it everywhere: builder palette, fill runes, and casting.
+[delivery_methods]
+
+	[delivery_methods.rune]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 20
+		# Range: 1 ~ 100000
+		castDelayTicks = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		ticksPerDuration = 40
+		# Default: 30.0
+		# Range: 1.0 ~ 256.0
+		reach = 30.0
+
+	[delivery_methods.sight]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[delivery_methods.self]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 5.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 5.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[delivery_methods.cast]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 200
+		# Range: 1 ~ 100000
+		projectileLifetimeTicks = 200
+		# Default: 1.5
+		# Range: 0.0 ~ 100.0
+		projectileBaseSpeed = 1.5
+		# Default: 0.1
+		# Range: 0.0 ~ 10.0
+		projectileSpread = 0.1
+
+	[delivery_methods.tracking]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 200
+		# Range: 1 ~ 100000
+		projectileLifetimeTicks = 200
+		# Default: 16.0
+		# Range: 0.0 ~ 256.0
+		homingRange = 16.0
+		# Default: 0.3
+		# Range: 0.0 ~ 100.0
+		homingStrength = 0.3
+
+	[delivery_methods.touch]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 200
+		# Range: 1 ~ 100000
+		durationTicks = 200
+
+	[delivery_methods.trap]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 20
+		# Range: 1 ~ 100000
+		armingTicks = 20
+		# Default: 1200
+		# Range: 1 ~ 100000
+		lifetimeTicks = 1200
+		# Default: 600
+		# Range: 0 ~ 100000
+		lifetimePerDuration = 600
+		# Default: 2.5
+		# Range: 0.5 ~ 64.0
+		triggerRadius = 2.5
+		# Default: 30.0
+		# Range: 1.0 ~ 256.0
+		reach = 30.0

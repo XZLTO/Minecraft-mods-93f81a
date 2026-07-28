@@ -1,0 +1,35 @@
+#Three wand tiers. While a wand is held it discounts the mana cost of every spell
+#you cast and grants bonus Spell Power; right-clicking casts your selected spell.
+#Worn is the cheap starter; Carved and Runic grant progressively more Spell Power.
+#Holding two wands never stacks — only the strongest tier applies.
+[wands]
+
+	[wands.worn]
+		#Fraction of mana cost removed while holding this wand (0.25 = 25% cheaper)
+		# Default: 0.1
+		# Range: 0.0 ~ 1.0
+		manaReduction = 0.1
+		#Bonus Spell Power granted while holding this wand
+		# Default: 10.0
+		# Range: 0.0 ~ 10000.0
+		spellPower = 10.0
+
+	[wands.carved]
+		#Fraction of mana cost removed while holding this wand (0.25 = 25% cheaper)
+		# Default: 0.25
+		# Range: 0.0 ~ 1.0
+		manaReduction = 0.25
+		#Bonus Spell Power granted while holding this wand
+		# Default: 25.0
+		# Range: 0.0 ~ 10000.0
+		spellPower = 25.0
+
+	[wands.runic]
+		#Fraction of mana cost removed while holding this wand (0.25 = 25% cheaper)
+		# Default: 0.4
+		# Range: 0.0 ~ 1.0
+		manaReduction = 0.4
+		#Bonus Spell Power granted while holding this wand
+		# Default: 75.0
+		# Range: 0.0 ~ 10000.0
+		spellPower = 75.0

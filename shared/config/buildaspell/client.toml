@@ -1,0 +1,5 @@
+[gui]
+	#Ability ring background transparency
+	# Default: 0.7
+	# Range: 0.0 ~ 1.0
+	abilityRingTransparency = 0.7

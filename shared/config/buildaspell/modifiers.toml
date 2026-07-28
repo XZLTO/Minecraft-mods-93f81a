@@ -1,0 +1,261 @@
+#Disabling a modifier hides it everywhere: builder palette, fill runes, and casting.
+[modifiers]
+
+	[modifiers.increased_area]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 256.0
+		rangePerStack = 1.0
+
+	[modifiers.increased_power]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.nullify]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 5.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 5.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.gentleness]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 10.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 10.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.fortunate_son]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.double]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 50.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 50.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.echo]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 40.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 40.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 10
+		# Range: 0 ~ 100000
+		delayTicksPerEcho = 10
+		# Default: 0.8
+		# Range: 0.0 ~ 1.0
+		powerFalloff = 0.8
+
+	[modifiers.prolonged]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 18.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 18.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.delay]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 8.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 8.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 10
+		# Range: 0 ~ 100000
+		ticksPerStack = 10
+
+	[modifiers.chain]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.pierce]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.bounce]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 3
+		# Range: 0 ~ 1000
+		bounceCount = 3
+
+	[modifiers.accelerate]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 0.5
+		# Range: 0.0 ~ 100.0
+		speedPerStack = 0.5
+
+	[modifiers.duration]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.linger]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 60
+		# Range: 0 ~ 100000
+		durationPerDuration = 60
+		# Default: 5
+		# Range: 1 ~ 100000
+		pulseIntervalTicks = 5
+
+	[modifiers.split]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 45.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 45.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.wall]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.floor]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.fill]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 40.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 40.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+
+	[modifiers.leech]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 0.25
+		# Range: 0.0 ~ 100.0
+		healFractionPerLevel = 0.25
+
+	[modifiers.sunder]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 0.5
+		# Range: 0.0 ~ 100.0
+		bonusPerArmorPerLevel = 0.5
+
+	[modifiers.return]
+		enabled = true
+		#Base mana cost (per stack) before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 2.0
+		# Range: 0.1 ~ 100.0
+		catchRadius = 2.0
+		# Default: 0.4
+		# Range: 0.0 ~ 100.0
+		minSpeed = 0.4

@@ -1,0 +1,1340 @@
+#Disabling an effect hides it everywhere: builder palette, fill runes, and casting.
+[effects]
+
+	[effects.damage]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 5.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 5.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 0.25
+		# Range: 0.0 ~ 100.0
+		spellPowerScale = 0.25
+		# Default: 0.15
+		# Range: 0.0 ~ 100.0
+		powerBonusPerLevel = 0.15
+		# Default: 0.85
+		# Range: 0.0 ~ 1.0
+		chainFalloff = 0.85
+		# Default: 2
+		# Range: 0 ~ 64
+		chainMaxPerLevel = 2
+		# Default: 5.0
+		# Range: 0.0 ~ 64.0
+		chainSearchRadius = 5.0
+		# Default: 5
+		# Range: 0 ~ 1000
+		invulnTicks = 5
+
+	[effects.ignite]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 20
+		# Range: 0 ~ 100000
+		durationPerPower = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerProlonged = 40
+
+	[effects.freeze]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 20
+		# Range: 0 ~ 100000
+		durationPerPower = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerProlonged = 40
+		# Default: 100
+		# Range: 0 ~ 100000
+		freezeOverflowCap = 100
+
+	[effects.teleport]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 50.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 50.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.pull]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 0.5
+		# Range: 0.0 ~ 1000.0
+		strengthBase = 0.5
+		# Default: 0.1
+		# Range: 0.0 ~ 1000.0
+		strengthPerPower = 0.1
+
+	[effects.push]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 0.5
+		# Range: 0.0 ~ 1000.0
+		strengthBase = 0.5
+		# Default: 0.1
+		# Range: 0.0 ~ 1000.0
+		strengthPerPower = 0.1
+
+	[effects.yeet]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 1000.0
+		strengthBase = 1.0
+		# Default: 0.2
+		# Range: 0.0 ~ 1000.0
+		strengthPerPower = 0.2
+		# Default: 50.0
+		# Range: 0.01 ~ 100000.0
+		spellPowerDivisor = 50.0
+
+	[effects.reap]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 40.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 40.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.explosion]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 60.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 60.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 2.0
+		# Range: 0.0 ~ 1000.0
+		powerBase = 2.0
+		# Default: 0.75
+		# Range: 0.0 ~ 1000.0
+		powerPerLevel = 0.75
+		# Default: 0.5
+		# Range: 0.0 ~ 1000.0
+		powerPerArea = 0.5
+		# Default: 4
+		# Range: 0 ~ 100
+		tntThreshold = 4
+		# Default: 2
+		# Range: 0 ~ 100
+		blockThreshold = 2
+
+	[effects.heal]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 0.3
+		# Range: 0.0 ~ 100.0
+		healScale = 0.3
+		# Default: 0.6
+		# Range: 0.0 ~ 100.0
+		undeadScale = 0.6
+		# Default: 0.15
+		# Range: 0.0 ~ 100.0
+		powerBonusPerLevel = 0.15
+		# Default: 0.85
+		# Range: 0.0 ~ 1.0
+		chainFalloff = 0.85
+		# Default: 2
+		# Range: 0 ~ 64
+		chainMaxPerLevel = 2
+		# Default: 5.0
+		# Range: 0.0 ~ 64.0
+		chainSearchRadius = 5.0
+		# Default: 5
+		# Range: 0 ~ 1000
+		invulnTicks = 5
+
+	[effects.lightning]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 55.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 55.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 2
+		# Range: 0 ~ 64
+		chainMaxPerLevel = 2
+		# Default: 1
+		# Range: 0 ~ 1000
+		strikeBase = 1
+		# Default: 10
+		# Range: 1 ~ 1000
+		powerPerStrike = 10
+		# Default: 5.0
+		# Range: 0.0 ~ 64.0
+		chainSearchRadius = 5.0
+
+	[effects.poison]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 80
+		# Range: 0 ~ 100000
+		durationBase = 80
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerPower = 40
+		# Default: 60
+		# Range: 0 ~ 100000
+		durationPerProlonged = 60
+		# Default: 15.0
+		# Range: 0.01 ~ 100000.0
+		amplifierDivisor = 15.0
+
+	[effects.wither]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 40.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 40.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 80
+		# Range: 0 ~ 100000
+		durationBase = 80
+		# Default: 30
+		# Range: 0 ~ 100000
+		durationPerPower = 30
+		# Default: 50
+		# Range: 0 ~ 100000
+		durationPerProlonged = 50
+		# Default: 15.0
+		# Range: 0.01 ~ 100000.0
+		amplifierDivisor = 15.0
+
+	[effects.saturation]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 200
+		# Range: 0 ~ 100000
+		durationBase = 200
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationPerPower = 100
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationPerProlonged = 100
+
+	[effects.launch]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 1000.0
+		strengthBase = 1.0
+		# Default: 0.3
+		# Range: 0.0 ~ 1000.0
+		strengthPerPower = 0.3
+		# Default: 50.0
+		# Range: 0.01 ~ 100000.0
+		spellPowerDivisor = 50.0
+
+	[effects.light]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 12.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 12.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 12
+		# Range: 0 ~ 15
+		lightLevelBase = 12
+		# Default: 15
+		# Range: 0 ~ 15
+		lightLevelCap = 15
+
+	[effects.slam]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: -1.5
+		# Range: -1000.0 ~ 0.0
+		strengthBase = -1.5
+		# Default: 0.4
+		# Range: 0.0 ~ 1000.0
+		strengthPerPower = 0.4
+		# Default: 50.0
+		# Range: 0.01 ~ 100000.0
+		spellPowerDivisor = 50.0
+
+	[effects.levitation]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.slow_fall]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.break]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 40.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 40.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 3.0
+		# Range: 0.0 ~ 1000.0
+		hardnessBase = 3.0
+		# Default: 2.0
+		# Range: 0.0 ~ 1000.0
+		hardnessPerPower = 2.0
+		# Default: 25
+		# Range: 0 ~ 256
+		fillRadiusBase = 5
+		# Default: 5
+		# Range: 0 ~ 256
+		fillRadiusPerFill = 5
+
+	[effects.invisibility]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.speed]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 3
+		# Range: 0 ~ 100
+		amplifierCap = 3
+
+	[effects.haste]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 3
+		# Range: 0 ~ 100
+		amplifierCap = 3
+
+	[effects.blink]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 5.0
+		# Range: 0.0 ~ 1000.0
+		distanceBase = 5.0
+		# Default: 2.0
+		# Range: 0.0 ~ 1000.0
+		distancePerPower = 2.0
+		# Default: 0.1
+		# Range: 0.0 ~ 100.0
+		spellPowerScale = 0.1
+		# Default: 20.0
+		# Range: 0.0 ~ 1000.0
+		distanceCap = 20.0
+
+	[effects.swap]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 45.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 45.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.summon]
+		enabled = false
+		#Base mana cost before multipliers
+		# Default: 50.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 50.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 1
+		# Range: 0 ~ 100
+		countBase = 1
+		# Default: 5
+		# Range: 1 ~ 100
+		countCap = 5
+		# Default: 2.0
+		# Range: 0.0 ~ 100.0
+		spawnRadius = 2.0
+
+	[effects.create_water]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 25
+		# Range: 0 ~ 256
+		fillRadiusBase = 25
+		# Default: 5
+		# Range: 0 ~ 256
+		fillRadiusPerFill = 5
+		# Default: 3
+		# Range: 0 ~ 256
+		chainRadiusPerChain = 3
+
+	[effects.evaporate_water]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 25
+		# Range: 0 ~ 256
+		fillRadiusBase = 25
+		# Default: 5
+		# Range: 0 ~ 256
+		fillRadiusPerFill = 5
+		# Default: 3
+		# Range: 0 ~ 256
+		chainRadiusPerChain = 3
+
+	[effects.mark]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.recall]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 40.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 40.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.pickup]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 5.0
+		# Range: 0.0 ~ 256.0
+		range = 5.0
+
+	[effects.shield]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 45.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 45.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 2.0
+		# Range: 0.0 ~ 1000.0
+		absorptionBase = 2.0
+		# Default: 0.15
+		# Range: 0.0 ~ 100.0
+		absorptionScale = 0.15
+		# Default: 20.0
+		# Range: 0.0 ~ 1000.0
+		absorptionCap = 20.0
+
+	[effects.conjure]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 1
+		# Range: 0 ~ 256
+		expandRadiusBase = 1
+		# Default: 25
+		# Range: 0 ~ 256
+		fillRadiusBase = 25
+		# Default: 5
+		# Range: 0 ~ 256
+		fillRadiusPerFill = 5
+
+	[effects.growth]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 1
+		# Range: 0 ~ 100
+		ageBase = 1
+		# Default: 1
+		# Range: 0 ~ 100
+		agePerPower = 1
+
+	[effects.cleanse]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.charm]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerProlonged = 40
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerPower = 40
+
+	[effects.blind]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 20
+		# Range: 0 ~ 100000
+		durationPerPower = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerProlonged = 40
+
+	[effects.slow]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 20.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 20.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 20
+		# Range: 0 ~ 100000
+		durationPerPower = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerProlonged = 40
+		# Default: 3
+		# Range: 0 ~ 100
+		amplifierCap = 3
+
+	[effects.weaken]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 25.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 25.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 120
+		# Range: 0 ~ 100000
+		durationBase = 120
+		# Default: 20
+		# Range: 0 ~ 100000
+		durationPerPower = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerProlonged = 40
+		# Default: 3
+		# Range: 0 ~ 100
+		amplifierCap = 3
+
+	[effects.strengthen]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 3
+		# Range: 0 ~ 100
+		amplifierCap = 3
+
+	[effects.regenerate]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 2
+		# Range: 0 ~ 100
+		amplifierCap = 2
+
+	[effects.resist]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 3
+		# Range: 0 ~ 100
+		amplifierCap = 3
+
+	[effects.night_vision]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.water_breathing]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 15.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 15.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+
+	[effects.root]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 80
+		# Range: 0 ~ 100000
+		durationBase = 80
+		# Default: 20
+		# Range: 0 ~ 100000
+		durationPerPower = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerProlonged = 40
+		# Default: 6
+		# Range: 0 ~ 255
+		slownessAmplifier = 6
+		# Default: 128
+		# Range: 0 ~ 255
+		jumpPreventAmplifier = 128
+
+	[effects.grapple]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 35.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 35.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 1.4
+		# Range: 0.0 ~ 1000.0
+		strengthBase = 1.4
+		# Default: 0.3
+		# Range: 0.0 ~ 1000.0
+		strengthPerPower = 0.3
+		# Default: 0.35
+		# Range: 0.0 ~ 100.0
+		liftBonus = 0.35
+
+	[effects.gust]
+		enabled = true
+		#Base mana cost before multipliers
+		# Default: 30.0
+		# Range: 0.0 ~ 100000.0
+		baseManaCost = 30.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		costMultiplier = 1.0
+		# Default: 1.0
+		# Range: 0.0 ~ 10.0
+		damageMultiplier = 1.0
+		# Default: 1.2
+		# Range: 0.0 ~ 1000.0
+		strengthBase = 1.2
+		# Default: 0.3
+		# Range: 0.0 ~ 1000.0
+		strengthPerPower = 0.3
+		# Default: 0.4
+		# Range: 0.0 ~ 100.0
+		liftBonus = 0.4
+		# Default: 0.3
+		# Range: -1.0 ~ 1.0
+		coneMinDot = 0.3
+
+#Shared knobs used by several area buff/debuff effects.
+[shared]
+	#Duration (ticks) for area buff/debuff effects: levitation, slow_fall, invisibility, speed, haste.
+	# Default: 100
+	# Range: 0 ~ 100000
+	areaDurationBase = 100
+	# Default: 20
+	# Range: 0 ~ 100000
+	areaDurationPerPower = 20
+	# Default: 40
+	# Range: 0 ~ 100000
+	areaDurationPerProlonged = 40
+
+#Combo spells (multi-part behaviours: meteor, tornado, blizzard, fortress, summons, etc.).
+[combos]
+
+	[combos.black_hole]
+		# Default: 2.5
+		# Range: 0.0 ~ 100.0
+		rangeMultiplier = 2.5
+		# Default: 0.5
+		# Range: 0.0 ~ 100.0
+		pullStrength = 0.5
+		# Default: 0.2
+		# Range: 0.0 ~ 100.0
+		damagePerTickScale = 0.2
+		# Default: 0.05
+		# Range: 0.0 ~ 100.0
+		damagePerTickPerPower = 0.05
+		# Default: 90
+		# Range: 0 ~ 100000
+		durationTicks = 90
+		# Default: 30
+		# Range: 0 ~ 100000
+		durationPerDuration = 30
+		# Default: 0.1
+		# Range: 0.0 ~ 100.0
+		pullTickScale = 0.1
+		# Default: 10
+		# Range: 1 ~ 100000
+		damageIntervalTicks = 10
+		# Default: 0.35
+		# Range: 0.0 ~ 100.0
+		damageRadiusFraction = 0.35
+
+	[combos.tornado]
+		# Default: 2.5
+		# Range: 0.0 ~ 100.0
+		rangeMultiplier = 2.5
+		# Default: 1.2
+		# Range: 0.0 ~ 1000.0
+		pullBase = 1.2
+		# Default: 0.3
+		# Range: 0.0 ~ 1000.0
+		pullPerPower = 0.3
+		# Default: 2.5
+		# Range: 0.0 ~ 1000.0
+		liftBase = 2.5
+		# Default: 0.5
+		# Range: 0.0 ~ 1000.0
+		liftPerPower = 0.5
+		# Default: 0.8
+		# Range: 0.0 ~ 1000.0
+		spinBase = 0.8
+		# Default: 0.2
+		# Range: 0.0 ~ 1000.0
+		spinPerPower = 0.2
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 20
+		# Range: 0 ~ 100000
+		durationPerPower = 20
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerDuration = 40
+		# Default: 20
+		# Range: 1 ~ 100000
+		catchTicks = 20
+		# Default: 10
+		# Range: 1 ~ 100000
+		damageIntervalTicks = 10
+		# Default: 0.2
+		# Range: 0.0 ~ 100.0
+		damageScale = 0.2
+		# Default: 0.5
+		# Range: 0.0 ~ 100.0
+		damageRadiusFraction = 0.5
+		# Default: 0.15
+		# Range: 0.0 ~ 10.0
+		moveSpeed = 0.15
+		# Default: 0.5
+		# Range: 0.0 ~ 10.0
+		climbSpeed = 0.5
+
+	[combos.creative_flight]
+		# Default: 200
+		# Range: 0 ~ 100000
+		durationBase = 200
+		# Default: 40
+		# Range: 0 ~ 100000
+		durationPerPower = 40
+		# Default: 80
+		# Range: 0 ~ 100000
+		durationPerProlonged = 80
+
+	[combos.iron_golem]
+		# Default: 1
+		# Range: 0 ~ 100
+		countBase = 1
+		# Default: 3
+		# Range: 1 ~ 1000
+		countPerPowerDivisor = 3
+		# Default: 1
+		# Range: 0 ~ 100
+		countBonusCap = 1
+		# Default: 2.5
+		# Range: 0.0 ~ 100.0
+		spawnOffset = 2.5
+
+	[combos.vexes]
+		# Default: 2
+		# Range: 0 ~ 100
+		countBase = 2
+		# Default: 4
+		# Range: 1 ~ 100
+		countCap = 4
+		# Default: 2.0
+		# Range: 0.0 ~ 100.0
+		spawnOffset = 2.0
+		# Default: 60
+		# Range: 0 ~ 100000
+		lifeSeconds = 60
+		# Default: 30
+		# Range: 0 ~ 100000
+		lifePerDuration = 30
+
+	[combos.skeletons]
+		# Default: 2
+		# Range: 0 ~ 100
+		countBase = 2
+		# Default: 2
+		# Range: 1 ~ 1000
+		countPerPowerDivisor = 2
+		# Default: 1
+		# Range: 0 ~ 100
+		countBonusCap = 1
+		# Default: 2.0
+		# Range: 0.0 ~ 100.0
+		spawnOffset = 2.0
+		# Default: 60
+		# Range: 0 ~ 100000
+		lifeSeconds = 60
+		# Default: 30
+		# Range: 0 ~ 100000
+		lifePerDuration = 30
+
+	[combos.vindicators]
+		# Default: 2
+		# Range: 0 ~ 100
+		countBase = 2
+		# Default: 2
+		# Range: 1 ~ 1000
+		countPerPowerDivisor = 2
+		# Default: 1
+		# Range: 0 ~ 100
+		countBonusCap = 1
+		# Default: 2.0
+		# Range: 0.0 ~ 100.0
+		spawnOffset = 2.0
+		# Default: 60
+		# Range: 0 ~ 100000
+		lifeSeconds = 60
+		# Default: 30
+		# Range: 0 ~ 100000
+		lifePerDuration = 30
+
+	[combos.fortress]
+		# Default: 5.0
+		# Range: 0.0 ~ 256.0
+		radiusBase = 5.0
+		# Default: 1.0
+		# Range: 0.0 ~ 256.0
+		radiusPerArea = 1.0
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationBase = 100
+		# Default: 50
+		# Range: 0 ~ 100000
+		durationPerDuration = 50
+
+	[combos.flood]
+		# Default: 10
+		# Range: 0 ~ 256
+		radiusMin = 10
+		# Default: 15
+		# Range: 0 ~ 256
+		radiusMax = 15
+		# Default: 2000
+		# Range: 0 ~ 1000000
+		blockCap = 2000
+
+	[combos.flood_lava]
+		# Default: 10
+		# Range: 0 ~ 256
+		radiusMin = 10
+		# Default: 15
+		# Range: 0 ~ 256
+		radiusMax = 15
+		# Default: 2000
+		# Range: 0 ~ 1000000
+		blockCap = 2000
+
+	[combos.emergency_escape]
+		# Default: 50
+		# Range: 1 ~ 100000
+		maxAttempts = 50
+		# Default: 1000
+		# Range: 1 ~ 1000000
+		searchRadius = 1000
+
+	[combos.meteor_strike]
+		# Default: 6
+		# Range: 1 ~ 1000
+		countBase = 6
+		# Default: 5
+		# Range: 0 ~ 1000
+		countRandom = 5
+		# Default: 4
+		# Range: 0 ~ 1000
+		explosionPowerBase = 4
+		# Default: 2
+		# Range: 0 ~ 1000
+		explosionPowerPerPowerCap = 2
+		# Default: 6.0
+		# Range: 0.0 ~ 1000.0
+		spreadMin = 6.0
+		# Default: 35
+		# Range: 0 ~ 1000
+		spawnHeightBase = 35
+		# Default: 6
+		# Range: 0 ~ 1000
+		spawnHeightStagger = 6
+		# Default: 0.8
+		# Range: 0.0 ~ 100.0
+		fireballSpeed = 0.8
+
+	[combos.blizzard]
+		# Default: 2.0
+		# Range: 0.0 ~ 100.0
+		rangeMultiplier = 2.0
+		# Default: 200
+		# Range: 0 ~ 100000
+		durationBase = 200
+		# Default: 60
+		# Range: 0 ~ 100000
+		durationPerDuration = 60
+		# Default: 20
+		# Range: 1 ~ 100000
+		damageIntervalTicks = 20
+		# Default: 0.15
+		# Range: 0.0 ~ 100.0
+		damageScale = 0.15
+		# Default: 5
+		# Range: 1 ~ 100000
+		freezeIntervalTicks = 5
+		# Default: 80
+		# Range: 0 ~ 100000
+		freezeCapBonus = 80
+		# Default: 30
+		# Range: 0 ~ 100000
+		freezePerApply = 30
+		# Default: 10
+		# Range: 1 ~ 100000
+		waterFreezeIntervalTicks = 10
+		# Default: 40
+		# Range: 0 ~ 100000
+		waterFreezeBlocks = 40
+
+	[combos.lightning_storm]
+		# Default: 10.0
+		# Range: 0.0 ~ 1000.0
+		spreadMin = 10.0
+		# Default: 2
+		# Range: 1 ~ 1000
+		cloudBase = 2
+		# Default: 1
+		# Range: 0 ~ 1000
+		cloudsPerArea = 1
+		# Default: 120
+		# Range: 1 ~ 100000
+		durationBase = 120
+		# Default: 80
+		# Range: 0 ~ 100000
+		durationPerDuration = 80
+		# Default: 20
+		# Range: 1 ~ 100000
+		strikeIntervalTicks = 20
+		# Default: 4.0
+		# Range: 0.0 ~ 256.0
+		strikeRadius = 4.0
+		# Default: 0.03
+		# Range: 0.0 ~ 10.0
+		driftSpeed = 0.03
+		# Default: 14.0
+		# Range: 0.0 ~ 256.0
+		cloudHeight = 14.0
+
+	[combos.earthquake]
+		# Default: 1.5
+		# Range: 0.0 ~ 100.0
+		rangeMultiplier = 1.5
+		# Default: 0.5
+		# Range: 0.0 ~ 100.0
+		damageScale = 0.5
+		# Default: 1.4
+		# Range: 0.0 ~ 100.0
+		launchStrength = 1.4
+		# Default: 0.75
+		# Range: 0.0 ~ 100.0
+		pushStrength = 0.75
+		# Default: 70
+		# Range: 0 ~ 10000
+		particleCount = 70
+		# Default: 0.85
+		# Range: 0.0 ~ 10.0
+		terrainRadiusFraction = 0.85
+		# Default: 44
+		# Range: 0 ~ 10000
+		terrainBlocks = 44
+		# Default: 0.75
+		# Range: 0.0 ~ 100.0
+		terrainLaunch = 0.75
+
+	[combos.sanctuary]
+		# Default: 1.5
+		# Range: 0.0 ~ 100.0
+		rangeMultiplier = 1.5
+		# Default: 200
+		# Range: 0 ~ 100000
+		durationBase = 200
+		# Default: 100
+		# Range: 0 ~ 100000
+		durationPerDuration = 100
+		# Default: 2
+		# Range: 0 ~ 100
+		amplifierCap = 2
+		# Default: 24
+		# Range: 0 ~ 10000
+		particleCount = 24
+
+	[combos.firestorm]
+		# Default: 9.0
+		# Range: 0.0 ~ 1000.0
+		spreadMin = 9.0
+		# Default: 18
+		# Range: 1 ~ 1000
+		countBase = 18
+		# Default: 8
+		# Range: 0 ~ 1000
+		countPerArea = 8
+		# Default: 20
+		# Range: 1 ~ 1000
+		spawnHeight = 20
+		# Default: 0.5
+		# Range: 0.0 ~ 100.0
+		fireballSpeed = 0.5
+
+	[combos.geyser]
+		# Default: 0.4
+		# Range: 0.0 ~ 100.0
+		jetRadiusMultiplier = 0.4
+		# Default: 7.0
+		# Range: 0.0 ~ 100.0
+		jetHeight = 7.0
+		# Default: 60
+		# Range: 0 ~ 10000
+		columnParticles = 60
+		# Default: 40
+		# Range: 0 ~ 10000
+		crownParticles = 40
+		# Default: 2.2
+		# Range: 0.0 ~ 100.0
+		launchStrength = 2.2
+		# Default: 0.45
+		# Range: 0.0 ~ 100.0
+		launchPerPower = 0.45
+		# Default: 0.3
+		# Range: 0.0 ~ 100.0
+		damageScale = 0.3

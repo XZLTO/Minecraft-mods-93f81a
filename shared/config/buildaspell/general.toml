@@ -1,0 +1,81 @@
+[general]
+	#Global mana cost multiplier
+	# Default: 1.0
+	# Range: 0.0 ~ 10.0
+	globalManaCostMultiplier =  1.5
+	#Spell power gained per enchantment level
+	# Default: 5.0
+	# Range: 0.0 ~ 50.0
+	spellPowerPerLevel = 5.0
+	#Cap on the effective level of the Mana Pool enchantment, per item.
+	#Levels above this are ignored when computing the mana bonus (the enchantment can
+	#still appear at a higher level, it just stops scaling). Mostly for mod pack devs
+	#who want to rein in the buildaspell enchantments. 255 = no cap (vanilla max level).
+	# Default: 255
+	# Range: 0 ~ 255
+	manaPoolMaxLevel = 10
+	#Cap on the effective level of the Mana Regeneration enchantment, per item.
+	#255 = no cap (vanilla max level).
+	# Default: 255
+	# Range: 0 ~ 255
+	manaRegenMaxLevel = 10
+	#Cap on the effective level of the Spell Power enchantment, per item.
+	#255 = no cap (vanilla max level).
+	# Default: 255
+	# Range: 0 ~ 255
+	spellPowerMaxLevel = 10
+	#Base spell range/area radius before Increased Area modifiers
+	# Default: 5.0
+	# Range: 0.0 ~ 256.0
+	spellBaseRange = 5.0
+	#Max portals per player (0 = unlimited)
+	# Default: 0
+	# Range: 0 ~ 1000
+	maxPortalsPerPlayer = 0
+	#Minimum portal width/height
+	# Default: 1.0
+	# Range: 0.5 ~ 10.0
+	portalMinSize = 1.0
+	#Maximum portal width/height
+	# Default: 10.0
+	# Range: 1.0 ~ 20.0
+	portalMaxSize = 10.0
+	#Blocks allowed for Conjure effect
+	conjureAllowedBlocks = ["stone", "cobblestone", "blackstone", "dirt", "grass_block"]
+	#Density of the big combo-spell particle effects (tornado, blizzard, black hole).
+	#1.0 = full visuals (default look); lower values thin the particles to reduce client
+	#FPS cost and network traffic on busy servers; 0.0 disables those particles entirely.
+	# Default: 1.0
+	# Range: 0.0 ~ 1.0
+	particleDensity = 1.0
+	#Whether spell-cast lightning (the Lightning effect and the Lightning Storm combo)
+	#runs buildaspell's custom block transmutations where a bolt lands: sand and red sand
+	#fuse into glass (fulgurite). Vanilla bolt side effects (fire, mob conversions, copper
+	#de-oxidising) always apply regardless. Nullified strikes never transmute blocks.
+	lightningTransmutesBlocks = true
+
+#Rune progression: how Blank Runes gather essence into Spell Runes,
+#and the components every player starts with already unlocked.
+[progression]
+	#Essence a Blank Rune must gather before it becomes a Spell Rune
+	# Default: 200
+	# Range: 1 ~ 100000
+	essenceRequired = 400
+	#Essence granted per regular hostile mob killed
+	# Default: 1
+	# Range: 0 ~ 100000
+	killEssence = 1
+	#Essence granted per boss killed (Ender Dragon, Wither, rare monsters)
+	# Default: 50
+	# Range: 0 ~ 100000
+	bossEssence = 50
+	#Essence granted per point of mana actually spent casting a spell (0 disables cast progression)
+	# Default: 0.25
+	# Range: 0.0 ~ 100.0
+	castEssenceRatio = 0.25
+	#Delivery method ids every player begins with unlocked
+	starterDeliveries = ["cast"]
+	#Effect ids every player begins with unlocked
+	starterEffects = ["damage"]
+	#Give new players the Arcane Codex guidebook on first join (requires Modonomicon installed)
+	giveStarterGuidebook = true
