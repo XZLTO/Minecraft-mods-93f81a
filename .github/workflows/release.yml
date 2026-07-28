@@ -74,59 +74,56 @@ jobs:
 
           Write-Host "Previous tag: $previousTag"
 
-          $allTags = git tag --sort=-creatordate | Where-Object { $_ -and $_ -ne $tag }
+          $allTags = @(git tag --sort=-creatordate | Where-Object { $_ -and $_ -ne $tag })
 
           $historyDepth = 20
-          $baseTag = $null
-
-          if ($allTags -and $allTags.Count -gt 0) {
-            if ($allTags.Count -ge $historyDepth) {
-              $baseTag = $allTags[$historyDepth - 1]
-            } else {
-              $baseTag = $allTags[$allTags.Count - 1]
-            }
-          }
-
-          Write-Host "Base tag for deletion lookup (up to $historyDepth releases back): $baseTag"
-
-          if ($baseTag) {
-            Write-Host "--- Raw git diff (client/shared), base=$baseTag ---"
-            git diff --name-status "$baseTag" HEAD -- client shared
-            Write-Host "--- Raw git diff (server/shared), base=$baseTag ---"
-            git diff --name-status "$baseTag" HEAD -- server shared
+          if ($allTags.Count -ge $historyDepth) {
+            $historicalTags = $allTags[0..($historyDepth - 1)]
           } else {
-            Write-Host "No previous tags found, skipping deletion lookup."
+            $historicalTags = $allTags
           }
+
+          Write-Host "Historical tags considered (up to $historyDepth): $($historicalTags -join ', ')"
 
           function Get-DeletedRelativePaths {
             param(
               [string[]]$Prefixes,
-              [string]$BaseTag
+              [string[]]$HistoricalTags
             )
 
-            $result = New-Object System.Collections.Generic.HashSet[string]
+            $everExisted = New-Object System.Collections.Generic.HashSet[string]
+            $currentFiles = New-Object System.Collections.Generic.HashSet[string]
 
-            if (-not $BaseTag) {
-              return $result
-            }
-
-            $diffOutput = git diff --name-status "$BaseTag" HEAD -- $Prefixes
-
-            foreach ($line in $diffOutput) {
-              if (-not $line) { continue }
-              $parts = $line -split "`t"
-              $status = $parts[0]
-              $filePath = $parts[1]
-
-
-              if ($status -eq "D") {
+            foreach ($histTag in $HistoricalTags) {
+              $lines = git ls-tree -r --name-only $histTag -- $Prefixes 2>$null
+              foreach ($f in $lines) {
+                if (-not $f) { continue }
                 foreach ($prefix in $Prefixes) {
-                  if ($filePath -like "$prefix/*") {
-                    $rel = $filePath.Substring($prefix.Length + 1)
-                    [void]$result.Add($rel)
+                  if ($f -like "$prefix/*") {
+                    $rel = $f.Substring($prefix.Length + 1)
+                    [void]$everExisted.Add($rel)
                     break
                   }
                 }
+              }
+            }
+
+            $headLines = git ls-tree -r --name-only HEAD -- $Prefixes
+            foreach ($f in $headLines) {
+              if (-not $f) { continue }
+              foreach ($prefix in $Prefixes) {
+                if ($f -like "$prefix/*") {
+                  $rel = $f.Substring($prefix.Length + 1)
+                  [void]$currentFiles.Add($rel)
+                  break
+                }
+              }
+            }
+
+            $result = New-Object System.Collections.Generic.HashSet[string]
+            foreach ($rel in $everExisted) {
+              if (-not $currentFiles.Contains($rel)) {
+                [void]$result.Add($rel)
               }
             }
 
@@ -148,8 +145,13 @@ jobs:
             return ,$modify
           }
 
-          $deletedClient = Get-DeletedRelativePaths -Prefixes @("client", "shared") -BaseTag $baseTag
-          $deletedServer = Get-DeletedRelativePaths -Prefixes @("server", "shared") -BaseTag $baseTag
+          $deletedClient = Get-DeletedRelativePaths -Prefixes @("client", "shared") -HistoricalTags $historicalTags
+          $deletedServer = Get-DeletedRelativePaths -Prefixes @("server", "shared") -HistoricalTags $historicalTags
+
+          Write-Host "--- Deleted (client/shared), not present in HEAD ---"
+          $deletedClient | ForEach-Object { Write-Host $_ }
+          Write-Host "--- Deleted (server/shared), not present in HEAD ---"
+          $deletedServer | ForEach-Object { Write-Host $_ }
 
           $clientModify = Build-ModifyArray -RelativePaths $deletedClient
           $serverModify = Build-ModifyArray -RelativePaths $deletedServer
@@ -260,6 +262,8 @@ jobs:
             exit 0
           }
 
+
+          # Разделитель: перенос строки или запятая
           $webhooks = $raw -split "[\r\n,]+" | Where-Object { $_.Trim() -ne "" }
 
           $repo = "${{ github.repository }}"
@@ -269,7 +273,6 @@ jobs:
           if (-not $changelog) {
             $changelog = "No changes listed."
           }
-            
           # Discord ограничивает поле embed 1024 символами
           if ($changelog.Length -gt 1000) {
             $changelog = $changelog.Substring(0, 1000) + "`n... (обрезано)"
