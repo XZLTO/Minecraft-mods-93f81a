@@ -414,7 +414,7 @@
 		damageMultiplier = 1.0
 
 	[effects.break]
-		enabled = true
+		enabled = false
 		#Base mana cost before multipliers
 		# Default: 40.0
 		# Range: 0.0 ~ 100000.0
