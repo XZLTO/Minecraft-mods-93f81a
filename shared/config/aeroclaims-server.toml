@@ -11,7 +11,7 @@
 	#How many ship blocks one aero claim covers. Example: 100 means 1 claim = 100 block limit.
 	# Default: 250
 	# Range: > 1
-	blocksPerClaim = 250
+	blocksPerClaim = 4500
 	#If true, the claim will be deactivated when a refresh finds the ship exceeds its block limit. Default: false.
 	deactivateOnOverflow = false
 	#Additional blocks of protection margin around claimed blocks. 0 = no margin, 1 = 1 block buffer, etc. Default: 0.
