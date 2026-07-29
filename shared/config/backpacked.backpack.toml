@@ -21,7 +21,7 @@
 	unlockAllEquipableSlots = false
 	# If set to true, equipable slots may be unlocked using Unlock Tokens
 	# Valid values: true, false
-	allowUnlockingUsingUnlockToken = false
+	allowUnlockingUsingUnlockToken = true
 
 	# Cost related properties for equipable slots
 	[equipable.unlockCost]
